@@ -26,10 +26,11 @@ class Item:
         return self.__name
 
     @name.setter
-    def name(self, name):
-        if len(name) > 10:
-            self.__name = name[:10]
-        self.__name = name
+    def name(self, value: str):
+        if len(value) > 10:
+            self.__name = value[:10]
+        else:
+            self.__name = value
 
     @classmethod
     def instantiate_from_csv(cls):
