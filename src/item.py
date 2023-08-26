@@ -41,7 +41,7 @@ class Item:
         # parent_directory = os.path.abspath(os.path.join(current_directory, os.pardir))
         # path = parent_directory + "\\src\\items.csv"
 
-        with open("D:\\PycharmProjects\\electronics-shop-project\\src\\items.csv", 'r') as file:
+        with open("..\\src\\items.csv", 'r') as file:
             reader = csv.DictReader(file)
             for row in reader:
                 i = Item(str(row['name']), float(row['price']), int(row['quantity']))
