@@ -27,10 +27,7 @@ class Item:
 
     @name.setter
     def name(self, value: str):
-        if len(value) > 10:
-            self.__name = value[:10]
-        else:
-            self.__name = value
+        self.__name = value[:10]
 
     @classmethod
     def instantiate_from_csv(cls):
@@ -41,7 +38,7 @@ class Item:
         # parent_directory = os.path.abspath(os.path.join(current_directory, os.pardir))
         # path = parent_directory + "\\src\\items.csv"
 
-        with open("..\\src\\items.csv", 'r') as file:
+        with open("D:\PycharmProjects\electronics-shop-project\src\items.csv", 'r') as file:  # "../src/items.csv" здесь pytest coverage ругается на путь, но тесты проходят!!!
             reader = csv.DictReader(file)
             for row in reader:
                 i = Item(str(row['name']), float(row['price']), int(row['quantity']))
