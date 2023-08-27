@@ -1,4 +1,5 @@
 import csv
+import os
 
 
 class Item:
@@ -37,8 +38,8 @@ class Item:
         # current_directory = os.getcwd()
         # parent_directory = os.path.abspath(os.path.join(current_directory, os.pardir))
         # path = parent_directory + "\\src\\items.csv"
-
-        with open("D:\PycharmProjects\electronics-shop-project\src\items.csv", 'r') as file:  # "../src/items.csv" здесь pytest coverage ругается на путь, но тесты проходят!!!
+        file = os.path.join('..', 'src', 'items.csv')
+        with open(file, 'r') as file:  # "../src/items.csv" здесь pytest coverage ругается на путь, но тесты проходят!!!
             reader = csv.DictReader(file)
             for row in reader:
                 i = Item(str(row['name']), float(row['price']), int(row['quantity']))
