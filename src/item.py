@@ -44,14 +44,12 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        """Получить базу данных из csv-файла,
-        пока по жестко привязанному пути ))"""
+        """Получить базу данных из csv-файла"""
 
         # current_directory = os.getcwd()
-        # parent_directory = os.path.abspath(os.path.join(current_directory, os.pardir))
-        # path = parent_directory + "\\src\\items.csv"
-        file = os.path.join('..', 'src', 'items.csv')
-        with open(file, 'r') as file:  # "../src/items.csv" здесь pytest coverage ругается на путь, но тесты проходят!!!
+        # full_path = "D:\\PycharmProjects\\electronics-shop-project\\src\\items.csv"
+        file_path = os.path.join('..', 'src', 'items.csv')
+        with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
             for row in reader:
                 i = Item(str(row['name']), float(row['price']), int(row['quantity']))
