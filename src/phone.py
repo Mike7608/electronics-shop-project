@@ -21,7 +21,7 @@ class Phone(Item):
     @property
     def number_of_sim(self):
         """
-        Количество поддерживаемых SIM-карт
+        Количество физических SIM-карт
         """
         return self.__number_of_sim
 
