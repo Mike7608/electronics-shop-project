@@ -1,4 +1,6 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
+import pytest
+
 from src.item import Item
 
 item1 = Item("Наименование", 23.6, 11)
@@ -48,4 +50,7 @@ def test___str__():
 
 def test___add__():
     assert item1 + item1 == 22
-    assert item1 + 100 is None
+
+    with pytest.raises(ValueError):
+        item1 + 10
+
