@@ -15,8 +15,10 @@ class Phone(Item):
     def __add__(self, other):
         if isinstance(other, Phone):
             return self.quantity + other.quantity
+        elif isinstance(other, Item):
+            return super().__add__(other)
         else:
-            return None
+            raise ValueError("Нельзя складывать Phone с другими типами кроме себя и Item")
 
     @property
     def number_of_sim(self):
