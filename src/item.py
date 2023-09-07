@@ -31,7 +31,7 @@ class Item:
         if isinstance(other, Item):
             return self.quantity + other.quantity
         else:
-            return None
+            raise ValueError("Нельзя складывать Item с другими типами кроме себя и Phone")
 
     @property
     def name(self):
