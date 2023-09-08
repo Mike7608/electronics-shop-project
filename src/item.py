@@ -47,9 +47,9 @@ class Item:
         """Получить базу данных из csv-файла"""
 
         # current_directory = os.getcwd()
-        # full_path = "D:\\PycharmProjects\\electronics-shop-project\\src\\items.csv"
-        file_path = os.path.join('..', 'src', 'items.csv')
-        with open(file_path, 'r') as file:
+        full_path = "D:\\PycharmProjects\\electronics-shop-project\\src\\items.csv"
+        #file_path = os.path.join('..', 'src', 'items.csv')
+        with open(full_path, 'r') as file:
             reader = csv.DictReader(file)
             for row in reader:
                 i = Item(str(row['name']), float(row['price']), int(row['quantity']))
