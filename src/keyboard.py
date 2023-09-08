@@ -21,4 +21,3 @@ class MixinKey:
 
 class Keyboard(Item, MixinKey):
     pass
-
