@@ -2,6 +2,12 @@ import csv
 import os
 
 
+class InstantiateCSVError(Exception):
+    """Общий класс исключения"""
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else "Ошибка CSV файла"
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -45,15 +51,22 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls):
         """Получить базу данных из csv-файла"""
-
-        # current_directory = os.getcwd()
-        full_path = "D:\\PycharmProjects\\electronics-shop-project\\src\\items.csv"
-        #file_path = os.path.join('..', 'src', 'items.csv')
-        with open(full_path, 'r') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                i = Item(str(row['name']), float(row['price']), int(row['quantity']))
-                Item.all.append(i)
+        try:
+            current_directory = os.getcwd()
+            file_name = 'items.csv'
+            # full_path = "D:\\PycharmProjects\\electronics-shop-project\\src\\items.csv"
+            file_path = os.path.join(current_directory, '..', 'src', file_name)
+            # print(file_path)
+            with open(file_path, 'r') as file:
+                try:
+                    reader = csv.DictReader(file)
+                    for row in reader:
+                        i = Item(str(row['name']), float(row['price']), int(row['quantity']))
+                        Item.all.append(i)
+                except Exception:
+                    raise InstantiateCSVError(f"Файл {file_name} поврежден")
+        except FileNotFoundError:
+            raise FileNotFoundError(f"Отсутствует файл {file_name}")
 
     @staticmethod
     def string_to_number(value: str):
@@ -74,3 +87,4 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.pay_rate
+
